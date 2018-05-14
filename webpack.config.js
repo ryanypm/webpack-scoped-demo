@@ -23,7 +23,7 @@ const config = {
             name: 'vendor',
         }),
         new HtmlWebpackPlugin({
-            title: '欢乐对战',
+            title: 'webpack-react-demo',
             filename: 'index.html',
             template: './index.html',
         }),

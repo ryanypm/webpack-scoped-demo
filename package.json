@@ -1,5 +1,5 @@
 {
-  "name": "app-h5-baidu.hldz.me",
+  "name": "webpack-react-demo",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -37,7 +37,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "ssh://git@git.innotechx.com:7999/hldz/app-h5-baidu.hldz.me.git"
+    "url": "https://github.com/ryanypm/webpack-react-demo.git"
   },
   "author": "hldz",
   "license": "UNLICENSED"

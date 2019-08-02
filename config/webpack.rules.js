@@ -1,4 +1,7 @@
 const rules = [{
+        test: /\.tsx?$/,
+        loader: 'awesome-typescript-loader'
+    }, {
     test: /\.jsx?$/,
     exclude: /(node_modules|bower_components)/,
     use: {

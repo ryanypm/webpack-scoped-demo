@@ -1,5 +1,5 @@
 const rules = [{
-        test: /\.tsx?$/,
+        test: /\.(tsx|ts)?$/,
         loader: 'awesome-typescript-loader'
     }, {
     test: /\.jsx?$/,

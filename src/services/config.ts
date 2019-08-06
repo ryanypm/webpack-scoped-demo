@@ -1,17 +1,20 @@
 const isProd = process.env.NODE_ENV === 'production';
 
 // modify here to change the env (backend services)
-const env = 'dev'; // beta/prod
+const env = 'dev_baidu'; // beta/prod
 
 const serverConfig = {
     dev_baidu: {
         STATIC_SITE: 'xxx',
+        GAME_SITE: 'xxx',
     },
     beta_baidu: {
         STATIC_SITE: 'xxx',
+        GAME_SITE: 'xxx',
     },
     prod_baidu: {
         STATIC_SITE: 'xxx',
+        GAME_SITE: 'xxx',
     },
 }
 
@@ -30,7 +33,7 @@ const config = {
     APP_VERSION: '1.0.0',
 };
 
-export const setConfig = (options) => {
+export const setConfig = (options: any) => {
     Object.assign(config, options);
 }
 

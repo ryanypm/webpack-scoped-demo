@@ -1,8 +1,15 @@
-export const RouteNameEnum = Object.freeze({
+interface RouteNameType {
+    Home: string;
+    Match: string;
+    Result: string;
+    Game: string;
+}
+
+export const RouteNameEnum: RouteNameType = Object.freeze({
     Home: 'home',
     Match: 'match',
     Result: 'result',
-    Game: 'game'
+    Game: 'game',
 })
 
 

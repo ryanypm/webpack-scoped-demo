@@ -67,11 +67,11 @@ const htmlDirs = getFileNameList(config.HTML_PATH);
 
 let HTMLPlugins = []; // 保存HTMLWebpackPlugin实例
 let Entries = { // 保存入口列表
-    vendor: [
-        'core-js/shim',
-        'react',
-        'react-dom',
-    ],
+    // vendor: [
+    //     'core-js/shim',
+    //     'react',
+    //     'react-dom',
+    // ],
 };
 
 // 生成HTMLWebpackPlugin实例和入口列表
@@ -97,10 +97,10 @@ htmlDirs.forEach((page) => {
     if (found === -1 && page.isEnter) {
         // 有入口js 的html， 添加当前页的js 和公共js, 并将入口js写入Entries
         Entries[page.enterName] = `${page.enterPath}`;
-        htmlConfig.chunks = ['vendor',  page.enterName];
+        htmlConfig.chunks = ['vendor', 'common', page.enterName];
     } else {
         // 默认加上vendor
-        htmlConfig.chunks = ['vendor'];
+        htmlConfig.chunks = ['vendor', 'common'];
     }
 
     const htmlPlugin = new HtmlWebpackPlugin(htmlConfig);
@@ -125,11 +125,18 @@ const webpackConfig = {
     optimization: {
         splitChunks: {
             cacheGroups: {
-                // core: {
-                //     chunks: "all",
-                //     name: 'core',
-                //     test: /[\\/]node_modules[\\/]/,
-                // },
+                common: {
+                    chunks: "all",
+                    name: 'common',
+                    minChunks: 1,
+                    minSize: 0,
+                    test: (modules) => {
+                        return (
+                            modules.resource &&
+                            modules.resource.indexOf('/config.ts') !== -1
+                        );
+                    },
+                },
                 vendor: {
                     chunks: 'all',
                     name: 'vendor',

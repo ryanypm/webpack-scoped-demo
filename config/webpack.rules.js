@@ -1,23 +1,18 @@
 const rules = [{
         test: /\.(tsx|ts)?$/,
-        loader: 'awesome-typescript-loader'
+        use: [
+            {
+                loader: 'babel-loader'
+            },
+            {
+                loader: 'awesome-typescript-loader'
+            }
+        ]
     }, {
     test: /\.jsx?$/,
-    exclude: /(node_modules|bower_components)/,
+    exclude: /(node_modules)/,
     use: {
-        loader: 'babel-loader',
-        options: {
-            presets: [
-                ['env', {
-                    loose: true,
-                    // debug: true,
-                }],
-                'react',
-            ],
-            plugins: [
-                'transform-class-properties',
-            ],
-        },
+        loader: 'babel-loader'
     },
 }, {
     test: /\.(svg|png|jpg|gif)$/,
@@ -33,7 +28,8 @@ const rules = [{
         loader: 'style-loader',
     }, {
         loader: 'css-loader',
-    }, {
+    }, { loader: 'scoped-css-loader' },
+    {
         loader: 'postcss-loader',
         options: {
             plugins: () => [
@@ -47,7 +43,8 @@ const rules = [{
         loader: 'style-loader',
     }, {
         loader: 'css-loader',
-    }, {
+    }, { loader: 'scoped-css-loader' },
+    {
         loader: 'postcss-loader',
         options: {
             plugins: () => [

@@ -17,7 +17,6 @@ if (process.env.npm_config_env_monitor) {
     watchs.forEach(file => watchFiles.push(file));
 }
 
-// 获取html 文件名
 const getFileNameList = (oPath) => {
     let fileList = [];
     const getFile = (nextPath) => {
@@ -65,22 +64,14 @@ const getFileNameList = (oPath) => {
 
 const htmlDirs = getFileNameList(config.HTML_PATH);
 
-let HTMLPlugins = []; // 保存HTMLWebpackPlugin实例
-let Entries = { // 保存入口列表
-    // vendor: [
-    //     'core-js/shim',
-    //     'react',
-    //     'react-dom',
-    // ],
-};
+let HTMLPlugins = [];
+let Entries = {};
 
-// 生成HTMLWebpackPlugin实例和入口列表
 htmlDirs.forEach((page) => {
     let htmlConfig = {
-        // multihtmlCache: true,
-        filename: `${page.name}.html`, // 文件名
-        template: `${page.path}`, // 模板文件
-        minify: isProd ? { // 压缩html
+        filename: `${page.name}.html`,
+        template: `${page.path}`,
+        minify: isProd ? {
             removeAttributeQuotes: true,
             collapseWhitespace: true,
             html5: true,
@@ -95,11 +86,9 @@ htmlDirs.forEach((page) => {
     });
 
     if (found === -1 && page.isEnter) {
-        // 有入口js 的html， 添加当前页的js 和公共js, 并将入口js写入Entries
         Entries[page.enterName] = `${page.enterPath}`;
         htmlConfig.chunks = ['vendor', 'common', page.enterName];
     } else {
-        // 默认加上vendor
         htmlConfig.chunks = ['vendor', 'common'];
     }
 
